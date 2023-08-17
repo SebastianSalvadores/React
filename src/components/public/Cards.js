@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "./Card";
+import RickAndMortyService from "../../services/RickAndMorty.service";
 
-export const Cards = ({ mascotas }) => {
-  const cardList = mascotas.map((m) => <Card mascota={m} key={m.id}/>);
+export const Cards = () => {
+  const [mascotas, setMascotas] = useState([]);
+
+  useEffect(() => {
+    RickAndMortyService.getAllCharacters()
+      .then((data) => setMascotas(data.results))
+      .catch((error) => console.log(error));
+  }, [mascotas]);
+
+  const cardList = mascotas.map((m) => <Card mascota={m} key={m.id} />);
   return (
     <div className="album py-5 bg-body-tertiary">
       <div className="container">
