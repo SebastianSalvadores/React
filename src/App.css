@@ -42,3 +42,9 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.especie{
+  color: green;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
